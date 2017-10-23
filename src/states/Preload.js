@@ -13,6 +13,10 @@ export default class extends Phaser.State {
       .image('BG', path + 'gameBG.jpg')
       .image('cloud', path + 'cloud.png')
       .image('ground', path + 'ground.png')
+      .atlas('fox', path + 'fox.png', path + 'fox.json')
+      .atlas('mouse', path + 'mouse.png', path + 'mouse.json')
+      .audio('hello', './assets/audio/hello.mp3')
+      .audio('goodbye', './assets/audio/goodbye.mp3')
   }
   create() {
     this.state.start('Menu')
