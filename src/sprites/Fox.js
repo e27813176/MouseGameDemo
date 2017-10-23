@@ -18,5 +18,8 @@ export default class Fox extends Phaser.Sprite {
     this.fail.onComplete.add(() => {
       this.standing.play();
     });
+    this.hitting.onComplete.add(() => {
+      this.standing.play();
+    });
   }
 }

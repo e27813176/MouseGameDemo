@@ -17,6 +17,8 @@ export default class extends Phaser.State {
       .atlas('mouse', path + 'mouse.png', path + 'mouse.json')
       .audio('hello', './assets/audio/hello.mp3')
       .audio('goodbye', './assets/audio/goodbye.mp3')
+      .audio('BG', './assets/audio/BG.mp3')
+      .audio('fail', './assets/audio/fail.mp3')
   }
   create() {
     this.state.start('Menu')

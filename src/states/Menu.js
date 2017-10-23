@@ -11,9 +11,14 @@ export default class extends Phaser.State {
   }
   create() {
     this.audio = {
+      BG: this.add.audio('BG'),
+      fail: this.add.audio('fail'),
       hello: this.add.audio('hello'),
       goodbye: this.add.audio('goodbye')
     }
+    this.audio.BG.loopFull(1);
+    this.audio.BG.volume = 0.8;
+
     this.BG = this.add.sprite(0, 0, 'BG');
     this.cloud = this.add.sprite(0, 0, 'cloud');
     this.mouse = new Mouse(this.game);
@@ -33,15 +38,12 @@ export default class extends Phaser.State {
     this.btn.Area.inputEnabled = false;
     this.btn.Area.alpha = 0;
 
-    this.waitForQuestion();
     this.mouse.alpha = 0;
-  }
-  waitForQuestion() {
     this.fox.animations.play('standing');
   }
   newQuestion() {
     this.mouse.alpha = 1;
-    this.checkTime = 300;
+    this.checkTime = 100;
     this.gamestate = 'check';
     this.btn.Area.inputEnabled = true;
     this.add.tween(this.HelloText.scale).to({ x: 1, y: 1 }, 200, 'Quad.easeInOut', true);
@@ -54,12 +56,12 @@ export default class extends Phaser.State {
     this.waitTime = 300;
     this.add.tween(this.HelloText.scale).to({ x: 0, y: 0 }, 200, 'Quad.easeInOut', true);
     this.fox.animations.play('hitting');
-    this.mouse.animations.play('ByHit')
-      .onComplete.add(this.waitForQuestion, this);
+    this.mouse.animations.play('ByHit');
   }
   wrongAnswer() {
-    this.waitTime = 300;
+    // this.audio.fail.play();
     this.btn.Area.inputEnabled = false;
+    this.waitTime = 300;
     this.mouse.animations.play('hide');
     this.fox.animations.play('fail');
     this.add.tween(this.HelloText.scale).to({ x: 0, y: 0 }, 200, 'Quad.easeInOut', true);
